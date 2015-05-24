@@ -1,0 +1,168 @@
+\subsection{Estrategias ganadoras del jugador II}
+Para los incisos a) y b) de este ejercicio, definiremos ciertas cosas a continuacion.
+
+\textbf{Nota}: $\bigoplus$ es la suma nim.\\
+
+\begin{theorem}[Teorema de Bouton]
+\label{bouton}
+	Una posicion $(X_1, \dots, X_n)$ en Nim, es \texttt{P-Position} $\leftrightarrow$ $X_1 \bigoplus ... \bigoplus X_n = 0$ 
+\end{theorem}
+
+\begin{theorem}
+\label{particion-movidas}
+	Las posiciones de un juego se particionan en \texttt{N-Position} y \texttt{P-Position}.
+\end{theorem}
+
+\begin{theorem}[Propiedad caracteristica de las posiciones]
+	\label{position-characterization}
+	Las posiciones de tipo \texttt{N-Position} y \texttt{P-Position} se definen recursivamente como:
+	\begin{enumerate}
+		\item Todas las posiciones terminales son \texttt{P-Position}.
+		\item Desde toda \texttt{N-Position} \textbf{existe al menos una} jugada a una \texttt{P-Position}
+		\item Desde toda \texttt{P-Position}, \textbf{todas} las jugadas son hacia \texttt{N-Position}.
+	\end{enumerate}
+\end{theorem}
+
+\textbf{Idea:} Comenzando en una \texttt{N-Position}, en cada turno del jugador II, este siempre debe moverse a una posicion en la cual el jugador I vuelva a mover a una \texttt{N-Position}.\\
+
+\begin{theorem}[Estrategia ganadora de II]
+	\label{estrategia-ganadora}
+	Si el jugador II comienza en una \texttt{N-Position}, tiene una estrategia ganadora.	
+\end{theorem}
+\begin{proof}
+	Si el jugador II comienza en una \texttt{N-Position}. Por definicion(\ref{position-characterization}), existe una jugada que me lleva a una \texttt{P-Position}.
+	Por definicion de \texttt{P-Position}, el jugador I va a tener que perder el juego porque dicha posicion es terminal o moverse a una \texttt{N-Position}, y nuevamente, el jugador II puede moverse a alguna \texttt{P-Position}. Este proceso se repite y es la estrategia ganadora para el jugador II.\\	
+\end{proof}
+
+\begin{corollary}
+	\label{estrategia-comienza-I}
+	Por definicion de \texttt{P-Position}(\ref{position-characterization}), todas las movidas posibles llevan a una \texttt{N-Position}. Si el jugador I comienza en una \texttt{P-Position}, el jugador II tambien tiene estrategia ganadora desde el momento que I le cede la \texttt{N-Position} al mover o pierde porque es una posicion terminal.
+\end{corollary}
+
+\begin{corollary}
+	\label{sumanim-posiciones}
+	Usando los teoremas \ref{bouton} y \ref{particion-movidas} tenemos que si $(X_1, \dots, X_k)$ es el nim inicial, entonces vale:
+	\begin{itemize}
+		\item La posicion inicial es una \texttt{P-Position} si $(X_1 \bigoplus \dots \bigoplus X_k) == 0$ 
+		\item La posicion inicial es una \texttt{N-Position} si $(X_1 \bigoplus \dots \bigoplus X_k) \neq 0$ 
+	\end{itemize}
+\end{corollary}
+
+\begin{theorem}[Equivalencia de suma nim a un bitwise exclusive or]
+\label{equiv-nim-xor}
+	La suma nim es equivalente a aplicar un \textbf{bitwise XOR} a los numeros a y b en base 2. Es decir, podemos definir la suma nim como $a \bigoplus b$ $ = $ $( (a)_2$ $\hat{}$ $(b)_2 )_{10}$.
+\end{theorem}
+\begin{proof}
+	 Se desprende de considerar las tablas de definicion de la suma modulo 2 y la tabla de verdad del xor tomando 0 como falso y 1 como verdadero.
+\end{proof}
+
+\subsubsection{Inciso a}
+Sabemos que:
+\begin{itemize}
+	\item El numero n, de fichas en la bolsa, es par
+	\item El numero k, de pilas, es par 
+\end{itemize}
+
+Dado que n es par, luego de la etapa de colocacion de fichas, comienza jugando el nim el jugador I.\\
+Como establecimos en \ref{estrategia-comienza-I} y \ref{sumanim-posiciones}. Si el nim inicial $(X_1, \dots, X_k)$ es tal que $(X_1 \bigoplus \dots \bigoplus X_k) == 0$, el jugador I comenzara en una \texttt{P-Position} y el jugador II tendra la estrategia ganadora mencionada en \ref{estrategia-ganadora}.\\
+
+Solo resta encontrar una manera para que el nim inicial sume cero.\\
+
+\textbf{Idea:} Le balanceo las pilas nim al jugador I de a pares. Luego, en el nim inicial $(X_1, \dots, X_k)$, tengo una cantidad par k de torres tales que:\\
+\begin{enumerate}
+	\item \textbf{Para cada pila, existe otra con la misma cantidad de elementos:} $\forall $ $ X_j $ $ \in $ $(X_1, \dots, X_k)$ $\exists$ $ X_i $ tal que $ (i \neq j) \land (X_i = X_j) $  
+	\item \textbf{Ley de cancelacion de suma nim:} $ (X_i \bigoplus X_j) = 0$  
+\end{enumerate}
+
+Por lo tanto, el nim inicial que comienza jugando I es una \texttt{P-Position}. Como queriamos.
+
+\begin{theorem}[Se puede armar un nim inicial que suma cero]
+	Bajo estas hipotesis, siempre se puede llegar a un nim balanceado de a pares.
+\end{theorem}
+
+\begin{proof}
+Por Induccion en cantidad de fichas:\\
+
+Sean:
+\begin{itemize}
+	\item El numero n, de fichas en la bolsa, natural par no nulo.
+	\item El numero k, de pilas, natural par no nulo.
+	\item P(n): {Las pilas estan balanceadas(misma cantidad de elementos) de a pares}.
+\end{itemize}
+
+Dado que la cantidad de pilas es par, podemos establecer una relacion de apareo entre pares de pilas. Diremos que 2 pilas estan apareadas cuando tienen la misma cantidad de elementos. Concretamente, al final de cada par de turnos tendremos una cantidad par de pares de pilas apareadas.
+
+\begin{itemize}
+	\item \textbf{Caso base, n = 2}\\
+	Como k es par(y no nulo), entonces $k \geq 2 $. El jugador I coloca una ficha en alguna de las pilas. Luego, existe alguna pila vacia. El jugador II pone una ficha en la pila vacia. Finalmente para toda pila en el nim, o bien esta vacia, o bien es alguna de las 2 pilas con 1 elemento.
+
+	\item \textbf{Caso inductivo, n $\rightarrow$ n+1}
+	Vale la hipotesis inductiva. El jugador I coloca una ficha en alguna pila $X_j$. Como las pilas estan balanceadas, existe una pila $X_i$, \texttt{apareada} a $X_j$ tal que si el jugador II coloca una ficha en ella quedan $X_j$ y $X_i$ con la misma cantidad de fichas, balanceadas nuevamente. Como no tocamos ninguna otra pila. Las pilas vuelven a quedar balanceadas.
+
+\end{itemize}
+\end{proof}
+
+\subsubsection{Inciso b}
+Sabemos que:
+\begin{itemize}
+	\item El numero n, de fichas en la bolsa, es impar
+\end{itemize}
+
+Dado que n es impar, juega primero el jugador II en el nim, queremos que II comience en una \textbf{N-Position}.
+Equivalentemente por \ref{sumanim-posiciones}, queremos que la posicion inicial $(X_1, \dots, X_k)$ sume nim \textbf{distinto de cero}, $(X_1 \bigoplus \dots \bigoplus X_k) \neq 0$.
+
+\begin{theorem}
+Sea $(X_1, \dots, X_k)$ una posicion en el nim, esta posicion es una \texttt{P-Position} $\leftrightarrow$ $(X_1 \bigoplus \dots \bigoplus X_k) = 0$, usando \ref{equiv-nim-xor} tenemos que:\\
+
+\vspace{0.3cm}
+
+\begin{tabular}{|c|c c|}
+			\hline
+			& $X_1 	=$ & $	(X_{1,1}, \dots, X_{1,t})_2$ \\\hline
+			& $X_2 	=$ & $	(X_{2,1}, \dots, X_{2,t})_2$ \\\hline
+$\bigoplus$  & & $ \dots$\\\hline
+			& $X_k 	=$ & $	(X_{k,1}, \dots, X_{k,t})_2$ \\\hline 
+			& $0$	 & $	(0,   ..., 0)_2$ \\\hline
+\end{tabular}
+\vspace{0.3cm}
+
+\textbf{Nota:} $t \in \mathbb{N}$ es la cantidad de bits requerida para representar el maximo numero del conjunto ${ X_1, \dots, X_k}$.\\
+
+Esto ocurre unicamente cuando para todo $j$ entre $1$ y $t$ vale que $X_{1,j} + X_{2,j} + \dots + X_{k,j} = 0 $ $ (mod$ $2)$. Es decir, cuando la cantidad de unos en cada una de las columnas es par.\\
+\end{theorem}
+
+\begin{proof}
+	Es facil ver esto, considerando la asociatividad del XOR en la suma por columna mencionada anteriormente, aplicando la operacion xor de a 2 elementos por columna hasta que finalmente da 0 cuando la cantidad de unos es par, 1 caso contrario.
+\end{proof}
+
+\begin{corollary}
+	Como nosotros queremos comenzar a jugar el nim en una \textbf{N-Position}, debe existir \textbf{ALGUNA} columna tal que la operacion exclusive or en dicha columna de distinto de cero, es decir, que dicha columna tenga una cantidad \textbf{IMPAR} de unos.
+\end{corollary}
+
+\begin{lemma}
+	El bit mas a la derecha en la suma nim especificada como operacion exclusive or, indica el bit de paridad del numero $X_j$, es decir. Si dicho bit es 0, el numero $X_j$ es par, caso contrario, el numero $X_j$ es impar.
+\end{lemma}
+
+\textbf{Idea:} Conseguir una cantidad impar de torres con cantidad impar de fichas en el armado de las torres.\\
+
+\begin{theorem}[]
+	Al ser $n$ impar, el numero de columnas $X_j$ en el nim inicial $(X_1, \dots, X_k)$ tales que $X_j$ es impar,tambien lo sera.
+\end{theorem}
+
+\begin{proof}
+
+Sabemos que $n = X_1 + X_2 + \dots + X_n $ y n es impar.
+
+\begin{itemize}
+	\item[] Tomando congruencia modulo 2.
+	\item[] $n \equiv 1 \equiv X_1 + X_2 + \dots + X_n \equiv $
+	\item[] $\sum\limits_{X_k \equiv 1( mod 2 )} X_k$ + $\sum\limits_{X_j \equiv 0( mod 2 )} X_j$
+	\item[] Desaparece la sumatoria de los pares por la congruencia.
+	\item[] $\equiv \sum\limits_{X_k \equiv 1( mod 2 )} 1$
+	\item[] $\equiv t$ $ \equiv $ {Cantidad de pilas impares} 
+\end{itemize}
+
+Por lo tanto, por transitividad de la congruencia tenemos que {Cantidad de pilas impares} $\equiv 1$
+\end{proof}
+
+Por lo enunciado anteriormente, la suma nim de la posicion nim inicial, sera \textbf{distinta de cero}, que es lo que queriamos ver.
