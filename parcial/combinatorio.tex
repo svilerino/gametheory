@@ -166,3 +166,69 @@ Por lo tanto, por transitividad de la congruencia tenemos que {Cantidad de pilas
 \end{proof}
 
 Por lo enunciado anteriormente, la suma nim de la posicion nim inicial, sera \textbf{distinta de cero}, que es lo que queriamos ver.
+
+\subsubsection{Inciso c}
+Sabemos que:
+\begin{itemize}
+	\item k, el numero de pilas del nim, es 3. 
+\end{itemize}
+
+Trabajaremos con una tupla $(x, y, z)$. Pero cualquier permutacion es analoga ya que no nos importa el orden de las pilas.\\
+
+\begin{proof}
+Probaremos esto usando induccion , en la cantidad de turnos, bajo el siguiente predicado:\\
+P(n): {I puso n fichas y el nim satisface que (x, y, z) tal que $x = y$, $z \geq y$}\\
+
+\begin{itemize}
+	\item Caso base: 
+		P(1): I coloco una ficha en el nim vacio. Y este quedo de la forma (0, 0, 1). Lo cual cumple con la restriccion pedida.
+	\item Caso inductivo: 
+		$P(n) \rightarrow P(n+1):$
+		Podemos suponer por la hipotesis inductiva que vale lo siguiente:
+		\begin{itemize}
+			\item El nim tiene la forma (x, y, z) tal que x=y, $z \geq y$.
+			\item El jugador I coloco n fichas y el proximo turno es de II.
+		\end{itemize}
+
+		Tenemos 3 casos:
+		\begin{enumerate}
+			\item Si II coloca (x, y, z+1), en el proximo turno n+1-esimo, I contesta con (x, y, z+2) lo cual satisface lo que queremos.
+			\item Si II coloca (x+1, y, z), en el proximo turno, (n+1) I puede contestar (x+1, y+1, z) si $z>y$ o (x+1, y, z+1) si z=y.
+			\item Si II coloca(x, y+1, z) es analogo al caso anterior(b), pues x=y por HI.
+		\end{enumerate}
+
+		Luego, $P(n) \rightarrow P(n+1)$ pues:
+		\begin{itemize}
+			\item El nim tiene la forma (x, y, z) pedida.
+			\item El jugador I coloco n+1 fichas y el proximo turno es de II.
+		\end{itemize}
+		
+\end{itemize}
+\end{proof}
+
+\subsubsection{Inciso d}
+
+\begin{lemma}[Caracterizacion de potencias de 2 en binario]
+	Todo numero de la forma $n = 2^k$, $ k \in \mathbb{N}$ Se escribe en base 2 como $(1, \dots, 0)_2$ donde, de derecha a izquierda, hay k ceros en su tira de bits y luego un uno.
+\end{lemma}
+
+\begin{lemma}[Caracterizacion de potencias de 2 menos uno en binario]
+	\label{bin-pot2menos1}
+	Todo numero de la forma $n = 2^k - 1$, $ k \in \mathbb{N}$ Se escribe en base 2 como $(0, 1, \dots, 1)_2$ donde, de derecha a izquierda, hay k unos en su tira de bits.
+\end{lemma}
+
+\begin{theorem}
+Si $X = (2^h - 1)$, $h \in \mathbb{N}$, entonces $X \bigoplus (X+1) = (2^{h+1} - 1)$.\\
+\end{theorem}
+\begin{proof}
+	Utilizando la equivalencia de la suma nim, con la operacion de bits xor y las caracterizaciones de los lemas anteriores. Es inmediato ver que el resultado de la operacion $X \bigoplus (X+1)$ = $(1, \dots, 1)_2$, donde de derecha a izquierda hay k+1 unos. Usando la caracterizacion del lema \ref{bin-pot2menos1}, vemos que este numero es $2^{h+1}-1$, como queriamos ver.
+\end{proof}
+
+\begin{theorem}
+Si $X \neq (2^h - 1)$, $h \in \mathbb{N}$, entonces $X \bigoplus (X+1) < X $.\\
+\end{theorem}
+\begin{proof}
+Vemos que como $X \neq (2^h - 1)$ entonces existe un primer cero desde la derecha tal que $X = (1, \dots, 0, 1, \dots)_2 $ donde los primeros puntos suspensivos indican la posible presencia de bits genericos y los segundos puntos suspensivos indican la posible presencia de unos.\\
+Luego, tenemos que $X + 1 = (1, \dots, 1, 0, \dots)_2 $ donde los primeros puntos suspensivos indican los mismos bits que en X y los segundos puntos suspensivos indican la posible presencia de ceros.\\
+Luego tenemos que $X \bigoplus (X+1) = (0, \dots, 0, \dots)_2$ Las posiciones en el desarrollo binario donde X y X+1 eran prefijos, quedan en 0 por la operacion de XOR. Luego es claro ver que $X \bigoplus (X+1) < X$ pues $X \bigoplus (X+1)$ ni siquiera tiene el primer uno desde la izquierda que tenia X en su desarrollo base 2.
+\end{proof}
