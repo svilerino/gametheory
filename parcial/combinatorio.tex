@@ -43,7 +43,7 @@ Para los incisos a) y b) de este ejercicio, definiremos ciertas cosas a continua
 	\label{sumanim-posiciones}
 	Usando los teoremas \ref{bouton} y \ref{particion-movidas} tenemos que si $(X_1, \dots, X_k)$ es el nim inicial, entonces vale:
 	\begin{itemize}
-		\item La posicion inicial es una \texttt{P-Position} si $(X_1 \bigoplus \dots \bigoplus X_k) == 0$ 
+		\item La posicion inicial es una \texttt{P-Position} si $(X_1 \bigoplus \dots \bigoplus X_k) = 0$ 
 		\item La posicion inicial es una \texttt{N-Position} si $(X_1 \bigoplus \dots \bigoplus X_k) \neq 0$ 
 	\end{itemize}
 \end{corollary}
@@ -64,7 +64,7 @@ Sabemos que:
 \end{itemize}
 
 Dado que n es par, luego de la etapa de colocacion de fichas, comienza jugando el nim el jugador I.\\
-Como establecimos en \ref{estrategia-comienza-I} y \ref{sumanim-posiciones}. Si el nim inicial $(X_1, \dots, X_k)$ es tal que $(X_1 \bigoplus \dots \bigoplus X_k) == 0$, el jugador I comenzara en una \texttt{P-Position} y el jugador II tendra la estrategia ganadora mencionada en \ref{estrategia-ganadora}.\\
+Como establecimos en \ref{estrategia-comienza-I} y \ref{sumanim-posiciones}. Si el nim inicial $(X_1, \dots, X_k)$ es tal que $(X_1 \bigoplus \dots \bigoplus X_k) = 0$, el jugador I comenzara en una \texttt{P-Position} y el jugador II tendra la estrategia ganadora mencionada en \ref{estrategia-ganadora}.\\
 
 Solo resta encontrar una manera para que el nim inicial sume cero.\\
 
@@ -228,7 +228,43 @@ Si $X = (2^h - 1)$, $h \in \mathbb{N}$, entonces $X \bigoplus (X+1) = (2^{h+1} -
 Si $X \neq (2^h - 1)$, $h \in \mathbb{N}$, entonces $X \bigoplus (X+1) < X $.\\
 \end{theorem}
 \begin{proof}
-Vemos que como $X \neq (2^h - 1)$ entonces existe un primer cero desde la derecha tal que $X = (1, \dots, 0, 1, \dots)_2 $ donde los primeros puntos suspensivos indican la posible presencia de bits genericos y los segundos puntos suspensivos indican la posible presencia de unos.\\
+Vemos que como $X \neq (2^h - 1)$ entonces existe un primer cero de derecha a izquierda tal que $X = (1, \dots, 0, 1, \dots)_2 $ donde los primeros puntos suspensivos indican la posible presencia de bits genericos y los segundos puntos suspensivos indican la posible presencia de unos.\\
 Luego, tenemos que $X + 1 = (1, \dots, 1, 0, \dots)_2 $ donde los primeros puntos suspensivos indican los mismos bits que en X y los segundos puntos suspensivos indican la posible presencia de ceros.\\
-Luego tenemos que $X \bigoplus (X+1) = (0, \dots, 0, \dots)_2$ Las posiciones en el desarrollo binario donde X y X+1 eran prefijos, quedan en 0 por la operacion de XOR. Luego es claro ver que $X \bigoplus (X+1) < X$ pues $X \bigoplus (X+1)$ ni siquiera tiene el primer uno desde la izquierda que tenia X en su desarrollo base 2.
+Luego tenemos que $X \bigoplus (X+1) = (0, \dots, 0, \dots)_2$ Las posiciones en el desarrollo binario donde X y X+1 eran prefijos, quedan en 0 por la operacion de XOR. Luego, es claro ver que $X \bigoplus (X+1) < X$.
+Para ver esto, consideremos que $(0_{j}, \dots, 0, \dots)_2$ es un numero claramente menor que $2^{j}$.
+Pero en el desarrollo en base 2 de X, aparece dicho bit en 1. Con lo cual $ X \geq 2^{j} $. Luego por transitividad, $X \bigoplus (X+1) < X$.
 \end{proof}
+
+\subsubsection{Inciso e}
+Sabemos que:
+\begin{itemize}
+	\item n es par.
+	\item $n \neq 2^j - 2$.
+	\item $k = 3$ 
+\end{itemize}
+
+Queremos que I tenga estrategia ganadora. Esto es equivalente a decir que queremos que I comience en una \textbf{N-Position} o que II comience en una \textbf{P-Position}. Usando los teoremas definidos anteriormente, esto es equivalene a que sea $(X_1, \dots, X_n)$ el nim inicial, su suma nim de cero o distinto de cero, segun querramos.
+
+Usando lo demostrado en el \textbf{inciso c} sabemos que I tiene forma de dejar el nim inicial de la forma $(x, x, y)$ con $y \geq x$.\\
+
+\textbf{n par:} II pone la ultima ficha y el primer turno del nim es de I\\
+Tomando lo visto en la demo del inciso c, II puede dejar el nim inicial, de las siguientes maneras:
+\begin{enumerate}
+	\item Si II coloca (x, x, y+1) con $x \leq y$, luego el nim inicial suma distinto de cero pues $x \bigoplus x \bigoplus (y+1) = 0 \bigoplus (y+1) = y+1 \neq 0$. I Comienza en una \textbf{N-Position}, por lo tanto tiene estrategia ganadora.
+
+	\item Si II coloca (x, x+1, y), con $x \leq y$.
+		\begin{enumerate}
+			\item Si $x = y$, entonces $ x \bigoplus y \bigoplus (x+1)= 0 + (x+1) = (x+1) \neq 0$. y es identico al caso anterior.
+			\item Si $ y = x+1$, entonces tenemos que $ x \bigoplus (x+1) \bigoplus (x+1) = x$. Si $x \neq 0$ comenzaremos en una \textbf{N-Position} que es lo que queremos. Veamos que x no puede ser cero, por el absurdo: Supongamos que x=0. Entonces $n = 0 + 1 + 1 = 2 = 2^2 - 2$, lo cual es absurdo por hipotesis.  
+			\item Si $ y > x+1$, entonces queremos ver como queda $x \bigoplus (x+1) \bigoplus y$.
+			 Como vimos en el inciso d, tenemos dos casos nuevamente:
+			 \begin{enumerate}
+				 \item $x \bigoplus (x+1) < x$ si $x \neq 2^k -1$:\\
+				 Como $x < y$, entonces $((x+1) \bigoplus x )< x < y$, mas particularmente nos sirve el hecho de que $((x+1) \bigoplus x ) \neq y$, porque ahora sabemos que $((x+1) \bigoplus x )\bigoplus y\neq 0$ y I tiene estrategia ganadora.
+				 \item $x \bigoplus (x+1) = 2^{k+1} -1$ si $x = 2^k -1$:\\
+				 I tiene una estrategia ganadora $\leftrightarrow$ $x \bigoplus (x+1) \bigoplus y \neq 0$ $\leftrightarrow$ $2^{k+1}-1 \bigoplus y \neq 0 $ $\leftrightarrow$ $2^{k+1}-1 \neq y $. Demo: Supongamos que $y = 2^{k+1}-1$, luego $n = x + (x+1) + y$ $\leftrightarrow$ $n = (2^k -1) + (2^k -1 +1) + (2^{k+1}-1)$ $\leftrightarrow$ $n = (2^{k+1} -1) + (2^{k+1}-1)$ $\leftrightarrow$ $n = (2^{k+2}-2)$, lo cual es absurdo por la hipotesis de que $n \neq 2^j -2$. 
+
+			 \end{enumerate}
+		\end{enumerate}
+	\item el caso donde II coloca (x+1, x, y) es analogo por conmutatividad.
+\end{enumerate}
