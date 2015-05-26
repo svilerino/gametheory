@@ -57,12 +57,12 @@ Como queriamos ver.
 
 \subsubsection{Inciso b}
 
-\begin{theorem}
-	Vale algo similar para los juegos bimat y sus equilibrios de nash? de ser asi enunciar el teorema y probarlo, sino enunciar que no y dar un contraejemplo en proof.
-\end{theorem}
-\begin{proof}
-	.
-\end{proof}
+%\begin{theorem}
+%	Vale algo similar para los juegos bimat y sus equilibrios de nash? de ser asi enunciar el teorema y probarlo, sino enunciar que no y dar un contraejemplo en proof.
+%\end{theorem}
+%\begin{proof}
+%	.
+%\end{proof}
 
 Supongamos un valor $ M > 2$, fijo. Por ejemplo $M = 4$. Luego la matriz de pagos para ambos jugadores queda:
 
@@ -76,13 +76,13 @@ $\begin{pmatrix}
   \caption{Matriz de pagos suponiendo M=4.}
 \end{figure}
 
-
 \vspace{0.5cm}
-Dadas las combinaciones de estrategias para ambos jugadores $\{L, R\} \times \{L, R\}$. Analicemos cada una:
+Dadas las combinaciones de estrategias \textbf{puras} para ambos jugadores $\{L, R\} \times \{L, R\}$. Analicemos cada una:
 \begin{itemize}
 	\item \textbf{L, L}: El pago de los jugadores es $(1,1)$, pero vemos que al jugador I, le conviene cambiar a R, pues asi gana 2 y mejora su pago. Analogamente, al jugador II, le conviene cambiar a R, pues asi gana 2, mejorando su pago. Luego esta estrategia no es un equilibrio de nash.   
-	\item \textbf{L, R}: El pago de los jugadores es $0, 2$, vemos que en este caso, al jugador I no le conviene cambiar de estrategia porque su pago seria -M, es decir, -4, que es menor que el actual, 2. Analogamente, al jugador II no le conviene cambiar .
-	\item \textbf{R, L}: 
-	\item \textbf{R, R}: 
-
+	\item \textbf{L, R}: El pago de los jugadores es $0, 2$, vemos que en este caso, al jugador I no le conviene cambiar de estrategia porque su pago seria -M, es decir, -4, que es menor que el actual, 2. Analogamente, al jugador II no le conviene cambiar porque pasa de ganar 2 a 0. \textbf{Este es un equilibrio.}
+	\item \textbf{R, L}: Analogamente, en este caso, si I cambia, pasa de ganar 2 a 1, no le conviene. Si II cambia, pasa de ganar 0 a -1, tampoco le conviene.
+	\item \textbf{R, R}: El pago de los jugadores es $(-4, -4)$, si el jugador I cambia, pasa de -4 a 0, por lo tanto le conviene cambiar. Al jugador II, le conviene tambien cambiar pues, de ganar -4 pasa a ganar 2. Con lo cual este no es un equilibrio.
 \end{itemize}
+
+Se puede pensar este juego como el de los autos enfrentados acelerando, como en \texttt{Rapido y furioso}, donde L es frenar y R es acelerar. Consideremos en este caso, que M, al ser la muerte, tiende a infinito. Con lo cual, la estrategia de acelerar ambos lleva a la muerte y a una perdida infinita.
