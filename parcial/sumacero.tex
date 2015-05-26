@@ -12,14 +12,17 @@
 	Sean $A, B \in \mathbb{R}^{n \times m}$ Matrices. Si $a_{ij} \leq b_{ij}$ para $1 \leq i \leq n$   ,  $1 \leq j \leq m$. Entonces $p^t . A . q \leq p^t . B . q$ para todo vector $p \in \mathbb{R}^{n \times 1}$ y $q \in \mathbb{R}^{m \times 1}$ que sean vectores de probabilidad(todos sus elementos suman uno y cada elemento mayor o igual a cero).
 \end{lemma}
 \begin{proof}
-	Si desarrollamos los productos $p^t . A . q$ y $p^t . B . q$ vemos que cada uno es un numero real, y termino a termino se puede aplicar la desigualdad valida por hipotesis. $a_{ij} \leq b_{ij}$.
+	Si desarrollamos los productos $p^t . A . q$ y $p^t . B . q$ vemos que cada uno es un numero real, y termino a termino se puede aplicar la desigualdad valida por hipotesis. $a_{ij} \leq b_{ij}$.\\
+
+	$p^t . A . q = \displaystyle\sum_{i=1}^{n} p_i.\displaystyle\sum_{j=1}^{m} a_{ij}.q{j} \leq 
+	\displaystyle\sum_{i=1}^{n} p_i.\displaystyle\sum_{j=1}^{m} b_{ij}.q{j} = p^t . B . q$
 \end{proof}
 
 \begin{theorem}
 	Sea $A \in \mathbb{R}^{n \times m}$ una matriz de pago de un juego de suma cero. Sea $B \in \mathbb{R}^{n \times m}$ otra matriz tal que $a_{ij} \leq b_{ij}$ para $1 \leq i \leq n$   ,  $1 \leq j \leq m$. Entonces $Val(A) \leq Val(B)$.
 \end{theorem}
 \begin{proof}
-	Consideremos las funciones $f:(\Delta_x \times \Delta_y)$ y $g:(\Delta_x \times \Delta_y)$, continuas, donde $\Delta_x$ y $\Delta_y$ son compactos de funciones de probabilidades. Donde f y g estan definidas como:
+	Consideremos las funciones $f:(\Delta_x \times \Delta_y)$ y $g:(\Delta_x \times \Delta_y)$, continuas, donde $\Delta_x$ y $\Delta_y$ son compactos de vectores de probabilidades. Donde f y g estan definidas como:
 	\begin{itemize}
 		\item $f(p, q) = p^t.A.q$ 
 		\item $g(p, q) = p^t.B.q$ 
@@ -32,8 +35,6 @@
 	\end{itemize}
 
 	Usando el lema \ref{lema-fg} Tenemos que $f(p, q) \leq g(p, q)$   $\forall p \in \Delta_x, q \in \Delta_y$.\\
-
-	%\textbf{Ojo con el orden de como tomar min max y la desigualdad $\leq$}
 
 \begin{enumerate}
 	\item Tomando $\displaystyle\max_{p}$ de ambos lados tenemos:\\
