@@ -1,0 +1,88 @@
+\subsubsection{Inciso a}
+\begin{theorem}[Minimax]
+\label{minimax-teo}
+	Sea $A \in \mathbb{R}^{n \times m}$ una matriz de pago de un juego de suma cero. Entonces existen $v \in \mathbb{R} $ y p,q vectores de probabilidad. Tales que:
+	\begin{itemize}
+		\item $v = Val(A) = \displaystyle\max_{p} \{    \displaystyle\min_{q} \{  p^t . A . q \}    \} = \displaystyle\min_{q} \{    \displaystyle\max_{p} \{  p^t . A . q \}    \}$ 
+	\end{itemize}
+\end{theorem}
+
+\begin{lemma}
+\label{lema-fg}
+	Sean $A, B \in \mathbb{R}^{n \times m}$ Matrices. Si $a_{ij} \leq b_{ij}$ para $1 \leq i \leq n$   ,  $1 \leq j \leq m$. Entonces $p^t . A . q \leq p^t . B . q$ para todo vector $p \in \mathbb{R}^{n \times 1}$ y $q \in \mathbb{R}^{m \times 1}$ que sean vectores de probabilidad(todos sus elementos suman uno y cada elemento mayor o igual a cero).
+\end{lemma}
+\begin{proof}
+	Si desarrollamos los productos $p^t . A . q$ y $p^t . B . q$ vemos que cada uno es un numero real, y termino a termino se puede aplicar la desigualdad valida por hipotesis. $a_{ij} \leq b_{ij}$.
+\end{proof}
+
+\begin{theorem}
+	Sea $A \in \mathbb{R}^{n \times m}$ una matriz de pago de un juego de suma cero. Sea $B \in \mathbb{R}^{n \times m}$ otra matriz tal que $a_{ij} \leq b_{ij}$ para $1 \leq i \leq n$   ,  $1 \leq j \leq m$. Entonces $Val(A) \leq Val(B)$.
+\end{theorem}
+\begin{proof}
+	Consideremos las funciones $f:(\Delta_x \times \Delta_y)$ y $g:(\Delta_x \times \Delta_y)$, continuas, donde $\Delta_x$ y $\Delta_y$ son compactos de funciones de probabilidades. Donde f y g estan definidas como:
+	\begin{itemize}
+		\item $f(p, q) = p^t.A.q$ 
+		\item $g(p, q) = p^t.B.q$ 
+	\end{itemize}
+
+	Usando el teorema \texttt{Minimax} definido en \ref{minimax-teo}, tenemos que:
+	\begin{itemize}
+		\item $Val(A) = \displaystyle\min_{q} \{    \displaystyle\max_{p} \{  f(p, q) \}    \}$
+		\item $Val(B) = \displaystyle\min_{q} \{    \displaystyle\max_{p} \{  g(p, q) \}    \}$
+	\end{itemize}
+
+	Usando el lema \ref{lema-fg} Tenemos que $f(p, q) \leq g(p, q)$   $\forall p \in \Delta_x, q \in \Delta_y$.\\
+
+	%\textbf{Ojo con el orden de como tomar min max y la desigualdad $\leq$}
+
+\begin{enumerate}
+	\item Tomando $\displaystyle\max_{p}$ de ambos lados tenemos:\\
+	$ \displaystyle\max_{p} f(p, q) \leq  \displaystyle\max_{p} g(p, q)$
+	
+	\item Tomando $\displaystyle\min_{q}$ de ambos lados tenemos:\\
+	$ \displaystyle\min_{q} \displaystyle\max_{p} f(p, q) \leq  \displaystyle\min_{q} \displaystyle\max_{p} g(p, q)$
+
+	\item Por la observacion anterior de \texttt{minimax} tenemos que:\\
+	$ Val(A) \leq Val(B)$
+\end{enumerate}
+Como queriamos ver.
+
+
+
+\end{proof}
+
+
+
+
+
+\subsubsection{Inciso b}
+
+\begin{theorem}
+	Vale algo similar para los juegos bimat y sus equilibrios de nash? de ser asi enunciar el teorema y probarlo, sino enunciar que no y dar un contraejemplo en proof.
+\end{theorem}
+\begin{proof}
+	.
+\end{proof}
+
+Supongamos un valor $ M > 2$, fijo. Por ejemplo $M = 4$. Luego la matriz de pagos para ambos jugadores queda:
+
+\vspace{0.5cm}
+\begin{figure}[H]
+  \centering	
+$\begin{pmatrix}
+	(1,1) & (0, 2) \\
+	(2, 0) & (-4, -4)
+\end{pmatrix} $
+  \caption{Matriz de pagos suponiendo M=4.}
+\end{figure}
+
+
+\vspace{0.5cm}
+Dadas las combinaciones de estrategias para ambos jugadores $\{L, R\} \times \{L, R\}$. Analicemos cada una:
+\begin{itemize}
+	\item \textbf{L, L}: El pago de los jugadores es $(1,1)$, pero vemos que al jugador I, le conviene cambiar a R, pues asi gana 2 y mejora su pago. Analogamente, al jugador II, le conviene cambiar a R, pues asi gana 2, mejorando su pago. Luego esta estrategia no es un equilibrio de nash.   
+	\item \textbf{L, R}: El pago de los jugadores es $0, 2$, vemos que en este caso, al jugador I no le conviene cambiar de estrategia porque su pago seria -M, es decir, -4, que es menor que el actual, 2. Analogamente, al jugador II no le conviene cambiar .
+	\item \textbf{R, L}: 
+	\item \textbf{R, R}: 
+
+\end{itemize}
