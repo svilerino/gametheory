@@ -92,15 +92,40 @@ Dadas las combinaciones de estrategias \textbf{puras} para ambos jugadores $\{L,
 
 Se puede pensar este juego como el de los autos enfrentados acelerando, como en \texttt{Rapido y furioso}, donde L es frenar y R es acelerar. Consideremos en este caso, que M, al ser la muerte, tiende a infinito. Con lo cual, la estrategia de acelerar ambos lleva a la muerte y a una perdida infinita.\\
 
-\textbf{Busquemos las estrategias mixtas:} Para esto usamos el principio de indiferencia. Siendo jugador I, quiero jugar con probabilidades p y (1-p) las dos posibles estrategias, tal que a mi enemigo le de lo mismo cual estrategia jugar.\\
+\textbf{Busquemos las estrategias mixtas:} Para esto usamos el principio de indiferencia. Siendo jugador I, quiero jugar con probabilidades $p$ y $(1-p)$ las dos posibles estrategias, tal que a mi enemigo le de lo mismo cual estrategia jugar. Analogamente, siendo jugador II busco $q$ y $(1-q)$ tal que pase lo mismo.\\
+Si queremos que nos de igual que jugar, nos debe dar la misma ganancia hacer cualquiera de las opciones.\\
 
 \begin{itemize}
-	\item Jugador I:
+	\item Jugador I:\\
+	Supongamos que II juega L con probabilidad $q$ y R con probabilidad $(1-q)$
 	\begin{itemize}
-		\item Ganancia de jugar L = $1 \times p + 0 \times (1-p)$ 
-		\item Ganancia de jugar R = $1 \times 2 - M \times (1-p)$ 
+		\item $g_{j1}(L) = \{$Ganancia esperada para el jugador I de jugar L$\}$ = $1 \times q + 0 \times (1-q)$ 
+		\item $g_{j1}(R) = \{$Ganancia esperada para el jugador I  de jugar R$\}$ = $2 \times q - M \times (1-q)$ 
 	\end{itemize}
+	Buscamos que nos den la misma ganancia, asi que igualamos $g_{j1}(L) = g_{j1}(R)$ y tenemos:
+	\begin{enumerate}
+		\item $1 \times q + 0 \times (1-q) = 2 \times q - M \times (1-q)$ 
+		\item $q = 2q - M(1-q)$ 
+		\item $-q = - M(1-q)$ 
+		\item $ M(1-q) -q = 0$ 
+		\item $ M-Mq-q = 0$ 
+		\item $ M = Mq+q$ 
+		\item $ M = (M+1)q$ 
+		\item $ \frac{M}{M+1} = q$ 
+		\item \textbf{Consideremos que pasa cuando n tiende a infinito:} $ q = \displaystyle\lim_{M \to \infty} \frac{M}{M+1}$ 
+		\item \texttt{Cortes\'ia Wolfram alpha:} $ q = 1$ 
+
+	\end{enumerate}	
+
+	\item Jugador II:
+	Supongamos que I juega L con probabilidad $p$ y R con probabilidad $(1-p)$
+	\begin{itemize}
+		\item $g_{j2}(L) = \{$Ganancia esperada para el jugador II de jugar L$\}$ = $1 \times p + 0 \times (1-p)$ 
+		\item $g_{j2}(R) = \{$Ganancia esperada para el jugador II  de jugar R$\}$ = $2 \times p - M \times (1-p)$ 
+	\end{itemize}
+	Buscamos que nos den la misma ganancia, asi que igualamos $g_{j2}(L) = g_{j2}(R)$ y tenemos las mismas ecuaciones que para jugador I, con lo cual $p=1$ cuando $M \to \infty$.
 \end{itemize}
+Esto quiere decir que tanto el jugador I como el jugador II jugaran con \textbf{probabilidad uno} la estrategia L. En el contexto que dimos de manejar hasta chocar, ambos frenaran.
 
 
 
