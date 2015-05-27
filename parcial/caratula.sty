@@ -139,14 +139,12 @@
 \newcommand{\tablaEntregas}{%
 \ifthenelse{\boolean{showEntregas}}{%
   \bigskip%
-  \begin{tabular}[t]{|l p{3.5cm} p{1.5cm}|}%
+  \begin{tabular}[t]{|p{3.5cm} p{1.5cm}|}%
   \hline%
-  \rule{0pt}{1.2em} Instancia & Docente & Nota \\[0.2em] %
+  \rule{0pt}{1.2em} Docente & Nota \\[0.2em] %
   \hline%
   \hline%
-  \rule{0pt}{1.2em} Primera entrega & & \\[0.2em] %
-  \hline%
-  \rule{0pt}{1.2em} Segunda entrega & & \\[0.2em] %
+  \rule{0pt}{1.2em} & \\[0.2em] %
   \hline%
   \end{tabular}%
 }{}%
@@ -284,7 +282,7 @@
 %
 % Etiqueta Autores o Integrantes
 %
-\DeclareOption{integrante}{\renewcommand{\LabelIntegrantes}{Integrante}}
+\DeclareOption{integrante}{\renewcommand{\LabelIntegrantes}{Alumno}}
 \DeclareOption{autor}{\renewcommand{\LabelIntegrantes}{Autor}}
 %
 % Formato tabla de integrantes
