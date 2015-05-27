@@ -52,18 +52,20 @@ Como queriamos ver.
 
 \end{proof}
 
-
-
-
-
 \subsubsection{Inciso b}
 
-%\begin{theorem}
-%	Vale algo similar para los juegos bimat y sus equilibrios de nash? de ser asi enunciar el teorema y probarlo, sino enunciar que no y dar un contraejemplo en proof.
-%\end{theorem}
-%\begin{proof}
-%	.
-%\end{proof}
+\begin{definition}
+	Cuando a todo jugador, sabiendo que hace el resto y sabiendo que ningun otro va a cambiar de estrategia, no le conviene(o le da igual), cambiar de estrategia, se dice que hay un equilibrio de nash. 
+\end{definition}
+
+\begin{definition}
+	Sea $A \in \mathbb{R}^{2^{n \times m}}$ una matriz de pagos de un juego bimatricial, tal que el par $(j_1, j_2)_{ij}$ indica la utilidad de los jugadores 1 y 2. Sean $\Delta_x = \{p_i / p_i \geq 0, \displaystyle\sum p_i = 1\}$, $\Delta_y = \{q_i / q_i \geq 0, \displaystyle\sum q_i = 1\}$ . $(p, q) \in \Delta_x \times \Delta_y $ es un equilibrio mixto de nash si:
+	\begin{itemize}
+		\item $p^t . A . q \geq p'^{t}.A.q $  $\forall p' \in Delta_x$
+		\item $p^t . A . q \geq p^{t}.A.q' $  $\forall q' \in Delta_y$
+	\end{itemize}
+	\textbf{Nota:} Los vectores p y q de probabilidad, para ser mixto, no deberian acumular toda la probabilidad en una estrategia. ie, ningun $p_i, q_i$ de los conjuntos delta deberia ser igual a 1. 
+\end{definition}
 
 Supongamos un valor $ M > 2$, fijo. Por ejemplo $M = 4$. Luego la matriz de pagos para ambos jugadores queda:
 
@@ -86,4 +88,19 @@ Dadas las combinaciones de estrategias \textbf{puras} para ambos jugadores $\{L,
 	\item \textbf{R, R}: El pago de los jugadores es $(-4, -4)$, si el jugador I cambia, pasa de -4 a 0, por lo tanto le conviene cambiar. Al jugador II, le conviene tambien cambiar pues, de ganar -4 pasa a ganar 2. Con lo cual este no es un equilibrio.
 \end{itemize}
 
-Se puede pensar este juego como el de los autos enfrentados acelerando, como en \texttt{Rapido y furioso}, donde L es frenar y R es acelerar. Consideremos en este caso, que M, al ser la muerte, tiende a infinito. Con lo cual, la estrategia de acelerar ambos lleva a la muerte y a una perdida infinita.
+\textbf{Veamos que pasa cuando M tiende a infinito}.\\
+
+Se puede pensar este juego como el de los autos enfrentados acelerando, como en \texttt{Rapido y furioso}, donde L es frenar y R es acelerar. Consideremos en este caso, que M, al ser la muerte, tiende a infinito. Con lo cual, la estrategia de acelerar ambos lleva a la muerte y a una perdida infinita.\\
+
+\textbf{Busquemos las estrategias mixtas:} Para esto usamos el principio de indiferencia. Siendo jugador I, quiero jugar con probabilidades p y (1-p) las dos posibles estrategias, tal que a mi enemigo le de lo mismo cual estrategia jugar.\\
+
+\begin{itemize}
+	\item Jugador I:
+	\begin{itemize}
+		\item Ganancia de jugar L = $1 \times p + 0 \times (1-p)$ 
+		\item Ganancia de jugar R = $1 \times 2 - M \times (1-p)$ 
+	\end{itemize}
+\end{itemize}
+
+
+
