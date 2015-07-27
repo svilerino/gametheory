@@ -1,0 +1,243 @@
+\documentclass{beamer}
+\usepackage{graphicx}
+\usepackage{listing}
+\usepackage[utf8]{inputenc}
+\usetheme{Warsaw}
+
+\beamertemplatenavigationsymbolsempty 
+
+\title{Presentacion Teoria de Juegos}
+\author{Silvio Vileriño}
+\date{28 de julio de 2015}
+
+\begin{document}
+
+\begin{frame}
+  \maketitle
+\end{frame}
+
+\begin{frame}
+  \frametitle{Din\'amicas de competici\'on en escenarios de bienes comunes}
+  \framesubtitle{Se presentan 3 modelos cl\'asicos}
+  \begin{itemize}
+    \setlength{\itemsep}{4pt}
+    \item Vendedores de helados en la playa. \textbf{Hotelling, 1929}.
+    \pause
+    \item Dilema del prisionero. \textbf{Flood, Dresher, 1950}.
+    \pause
+    \item Tragedia de los comunes, \textbf{Harding, 1968}.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Heladeros en la playa}
+  \framesubtitle{Consideraciones}
+  \begin{itemize}
+    \setlength{\itemsep}{4pt}
+    \item Tenemos una franja de playa con 80 personas tomando sol distribuidas uniformemente.    
+    \pause
+    \item Hay 2 heladeros, usted es uno de ellos.
+    \pause
+    \item Consideremos la franja de playa como una recta...
+    \pause
+    \item Podemos analizar esto desde varios puntos de vista...
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Heladeros en la playa}
+  \framesubtitle{Consideraciones}
+
+  \begin{itemize}
+    \setlength{\itemsep}{4pt}
+    \item Usted es el heladero posicionado en A, el otro heladero esta posicionado en B.
+    \pause
+    \item L, C, R son los turistas de la izquierda, centro y derecha respectivamente.
+    \pause
+    \item Usted vende helados a la region LAC.
+    \pause
+    \item El otro heladero vende helados a la region CBR.
+    \pause
+  \end{itemize}
+
+  \begin{figure}[h!]
+      \centering        
+      \includegraphics[scale=0.25]{fig/playa-posiciones.png}
+      \caption{Posiciones en la porcion de playa}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Heladeros en la playa}
+  \framesubtitle{Punto de vista de los turistas}
+
+  \begin{itemize}
+    \setlength{\itemsep}{4pt}
+    \item Las mejores posiciones para los heladeros son en los cuartiles 0.25 y 0.75.
+    \pause
+    \item De esta manera, se minimiza la distancia promedio que debe caminar un turista para comprar helado a $\frac{1}{8}$ de playa.
+    \pause
+    \item Dadas estas condiciones, cada heladero espera vender un numero igual de helados, es decir, 40 helados.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Heladeros en la playa}
+  \framesubtitle{Punto de vista de los heladeros}
+
+  \begin{itemize}
+    \setlength{\itemsep}{4pt}
+    \item Usted se da cuenta que desplazandose un poco a la derecha de su posicion original \textbf{(A)} puede aumentar su esperanza de ventas, capturando clientes a la derecha de la posicion central \textbf{(C)}, que ahora encuentran mas conveniente comprarle a usted porque esta mas cerca que el otro heladero.
+    \pause
+    \item El otro heladero, consciente de su desplazamiento y perdiendo clientes, toma la misma decision que usted, moviendose hacia la izquierda, aun mas distante de su posicion que usted.
+    \pause
+    \item Estos desplazamientos, \texttt{producen un aumento en la distancia media que los turistas deben caminar para comprar el helado}.
+    \pause
+    \item Este modo de pensar continua de parte de ambos vendedores, convergiendo en los dos vendedores en la posicion central, \texttt{con una misma tasa media de ventas}.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Heladeros en la playa}
+  \framesubtitle{Formalizando: Juego de suma cero}
+  \begin{itemize}
+    \setlength{\itemsep}{4pt}
+    \item Consideremos las siguientes condiciones del problema
+    \begin{itemize}
+      \item Los vendedores comienzan en las posiciones A y B mencionadas al principio.
+      \pause
+      \item El total del mercado permanece constante(80 personas).
+      \pause
+      \item Conflicto directo, donde la ganancia de uno es la perdida del otro.
+      \pause
+      \item Los turistas no tienen problema con caminar demas ni cambiar de heladero.
+      \pause
+      \item Cada jugador(vendedor de helados) tiene 2 opciones: Moverse \textbf{(M)} o quedarse donde estaba originalmente (\textbf{NM}). 
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Heladeros en la playa}
+  \framesubtitle{Formalizando: Matrices de pago}
+  \begin{itemize}
+    \setlength{\itemsep}{4pt}
+    \item Consideremos las siguientes matrices de pago para cada heladero
+    \pause
+    \item Si ninguno se mueve de A y B: Tienen mitad del mercado, distancia minima esperada para los turistas.   
+    \pause
+    \item Si ambos se mueven al centro: Tienen mitad del mercado, distancia esperada de los turistas aumenta.
+    \pause
+    \item Si uno se mueve y el otro no: El que queda en el centro tiene 50 turistas cautivos en su mercado, el otro 30.
+    \pause    
+  \end{itemize}
+
+  \begin{figure}[h!]
+      \centering        
+      \includegraphics[scale=0.25]{fig/you-matrices-pago-playa.png}
+      \includegraphics[scale=0.25]{fig/elotro-matrices-pago-playa.png}
+      \caption{Matrices de pago}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Heladeros en la playa}
+  \framesubtitle{Mejores Estrategias - Estrategias Dominadas}
+  \begin{itemize}
+    \setlength{\itemsep}{4pt}
+    \item Observando las matrices de pagos de la slide anterior podemos concluir:
+    \pause    
+    \item Si el otro vendedor se mueve, me conviene moverme pare recuperar mercado perdido.
+    \pause
+    \item Si el otro vendedor no se mueve, me conviene moverme para capturar mas mercado.
+    \pause
+    \item Esto es simetrico para ambos jugadores.
+    \pause
+    \item En definitiva, la estrategia de moverse \textbf{domina} a la de no moverse.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Heladeros en la playa}
+  \framesubtitle{Estrategias desde el punto de vista de los turistas}
+  \begin{itemize}
+    \setlength{\itemsep}{4pt}
+    \item Mas alla de que quedandose en los puntos A y B o ambos en el centro, la ganancia esperada de los heladeros no cambia...
+    \pause
+    \item La distancia esperada que debe caminar un turista al azar \textbf{se duplica de $\frac{1}{8}$ a $\frac{1}{4}$} si los heladeros se ponen ambos en el centro de la playa.
+    \pause
+    \item Tenemos entonces, un ejemplo en donde se observa que, a pesar de la creencia popular,
+    \item La competencia \textbf{No siempre} mejora el bienestar social. 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Heladeros en la playa}
+  \framesubtitle{Un escenario mas realista...}
+  \begin{itemize}
+    \setlength{\itemsep}{4pt}
+    \item Consideremos ahora que los turistas consideran importante la distancia a un heladero
+    \pause
+    \item Los heladeros comienzan en A, B como antes, hay el mismo numero de turistas uniformemente distribuidos.
+    \pause
+    \item A medida que los heladeros se acercan al centro, el mercado se reduce...
+    \pause
+    \item Un turista deja de comprar helado si debe caminar mas de $\frac{1}{4}$ de porcion de playa.
+    \pause
+    \item Esto produce un cambio grande en las reglas del problema...Veamos...
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Heladeros en la playa II}
+  \framesubtitle{Un escenario mas realista...}
+  \begin{itemize}
+    \setlength{\itemsep}{4pt}
+    \item Si ningun heladero cambia de posicion, el mercado queda intacto(80 turistas)
+    \pause
+    \item Si solo uno se mueve al centro, el mercado se reduce a 60 turistas menos del lado del heladero que se mueve.
+    \pause
+    \item Si ambos se mueven al centro, el mercado se reduce a 40 turistas, dado que los turistas de los extremos dejaran de comprar helado por motivos de lejania.
+    \pause
+    \item Vemos que este es un juego de suma no nula. Formalicemos las matrices de pagos...
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Heladeros en la playa II}
+  \framesubtitle{Modelando las matrices de pago...}
+  \begin{itemize}
+    \setlength{\itemsep}{2pt}
+    \item Consideremos la siguiente matriz de pago para este problema y analicemos las estrategias asumiendo el rol del jugador de la izquierda en el par (x, y) de la matriz.
+    \pause
+    \item Si el otro vendedor se mueve, conviene no moverse.
+    \pause    
+    \item Si el otro vendedor no se mueve, conviene no moverse.
+    \pause
+    \item Mas aun, se tiene un incentivo(de 10 potenciales clientes nuevos) para convencer al otro vendedor de que no se mueva.
+    \pause
+    \item Simetricamente, el otro jugador tambien se quedara quieto en su posicion inicial.
+    \pause
+  \end{itemize}
+
+  \begin{figure}[h!]
+      \centering        
+      \includegraphics[scale=0.20]{fig/nonzero-matrices-pago-playa.png}
+      \caption{Matriz de pago}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Heladeros en la playa II}
+  \framesubtitle{Conclusiones...}
+  \begin{itemize}
+    \setlength{\itemsep}{4pt}
+    \item Si ambos vendedores, en este modelo, comenzaran en el centro de la playa, les redituaria moverse hacia los percentiles 0.25 y 0.75.
+    \pause
+    \item En este caso, la competencia entre ambos vendedores beneficiaria a todos: Los vendedores abarcarian mas mercado y los turistas caminarian menos para obtener helado.
+    \pause
+    \item La afirmacion acerca del beneficio de la competencia para todos depende de los parametros particulares de la situacion: En este caso, la \texttt{demanda} de helado por parte de los turistas. 
+  \end{itemize}
+\end{frame}
+
+\end{document}
