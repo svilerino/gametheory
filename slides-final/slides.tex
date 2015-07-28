@@ -167,6 +167,7 @@
     \item La distancia esperada que debe caminar un turista al azar \textbf{se duplica de $\frac{1}{8}$ a $\frac{1}{4}$} si los heladeros se ponen ambos en el centro de la playa.
     \pause
     \item Tenemos entonces, un ejemplo en donde se observa que, a pesar de la creencia popular,
+    \pause
     \item La competencia \textbf{No siempre} mejora el bienestar social. 
   \end{itemize}
 \end{frame}
@@ -239,5 +240,54 @@
     \item La afirmacion acerca del beneficio de la competencia para todos depende de los parametros particulares de la situacion: En este caso, la \texttt{demanda} de helado por parte de los turistas. 
   \end{itemize}
 \end{frame}
+
+\begin{frame}
+  \frametitle{Heladeros en la playa III}
+  \framesubtitle{Un modelo mas general...}
+  \begin{itemize}
+    \setlength{\itemsep}{4pt}
+    \item Pensemos en el modelo anterior pero ahora definamos una proporcion $x \in \mathbb{R}$ como la distancia maxima que un turista esta dispuesto a recorrer para conseguir helado.
+    \pause
+    \item Podemos analizar la situacion en 2 casos.
+    \pause
+  \end{itemize}
+    \begin{figure}[h!]
+      \centering        
+      \includegraphics[scale=0.25]{fig/nonzero-matrices-pago-playa-14-12.png}
+      \includegraphics[scale=0.25]{fig/nonzero-matrices-pago-playa-18-14.png}
+      \caption{Matriz de pago}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Heladeros en la playa III}
+  \framesubtitle{Un modelo mas general...}
+  \begin{itemize}
+    \setlength{\itemsep}{4pt}
+    \item Analizando las filas de las matrices de la slide anterior...
+    \pause
+    \item Si $ x \leq \frac{3}{8}$ la estrategia de no mover(sin importar que hace el otro jugador) paga mas que la estrategia de mover
+    \pause    
+    \item Para ver esto mas claramente, se muestran ploteos de la funcion de ganancia respecto a la distancia de tolerancia de los turistas a caminar para comprar helado.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Heladeros en la playa III}
+  \framesubtitle{Un modelo mas general...}
+
+\begin{itemize}
+    \setlength{\itemsep}{4pt}
+    \item Funcion de ganancia respecto a la distancia.
+    \pause
+  \end{itemize}
+
+  \begin{figure}[h!]
+      \centering        
+      \includegraphics[scale=0.20]{fig/plot-pago-playa1.png}
+      \includegraphics[scale=0.20]{fig/plot-pago-playa2.png}
+  \end{figure}
+\end{frame}
+
 
 \end{document}
