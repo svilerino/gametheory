@@ -487,4 +487,125 @@
   \end{itemize}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Tragedia de los bienes comunes}
+  \framesubtitle{Consideraciones}
+  \begin{itemize}
+    \setlength{\itemsep}{4pt}
+    \item Consideremos un pastizal abierto compartido por varios pastores de ovejas.
+    \pause
+    \item Cada pastor quiere maximizar su ganancia. Para esto se pregunta cual es la ganancia de agregar un animal mas a su rebaño.
+    \pause 
+    \item La ganancia se relaciona con la agregacion de un animal al rebaño, puede representarse como +1.
+    \pause
+    \item La perdida se relaciona con el costo de \texttt{sobre-pastar} el pastizal. Como este costo se reparte entre todos los pastores, podemos pensarlo como $-\frac{1}{n}$.
+    \pause
+    \item Tenemos $ g = -\frac{1}{n} + 1 > 0$ la ganancia de agregar otro animal a su rebaño.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Tragedia de los bienes comunes}
+  \framesubtitle{Se viene la tragedia...}
+  \begin{itemize}
+    \setlength{\itemsep}{4pt}
+    \item Consideremos que cada pastor actua independientemente del resto para su propio beneficio.
+    \pause
+    \item Ademas, Cada pastor esta bajo presion constante de mejorar su ganancia.
+    \pause 
+    \item Por lo que vimos anteriormente, cada pastor individualmente, analiza su funcion de ganancia y siempre le conviene agregar un animal mas, y luego otro,..., y luego otro...
+    \pause
+    \item Llega la tragedia: Cada pastor esta condenado a agregar ovejas constantemente.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Tragedia de los bienes comunes}
+  \framesubtitle{Formalizando}
+  \begin{itemize}
+    \setlength{\itemsep}{4pt}
+    \item Agreguemos la condicion de que la perdida de agregar una nueva oveja al pastizal crezca linealmente con la cantidad de ovejas mas alla del limite del pastizal.
+    \pause
+    \item Sea $m \in \mathbb{N}$ el numero de pastores. 
+    \pause 
+    \item Sea $s \in \mathbb{N}$ el numero de ovejas promedio por pastor cuando el pastizal esta lleno. 
+    \pause
+    \item Sea $N = m \times s$ el numero total de ovejas en el rebaño.
+    \pause
+    \item El valor de cada oveja dentro de las $N$ del rebaño inicial es +1.
+    \pause
+    \item El valor de perdida \textbf{en cada oveja} por cada oveja agregada mas alla del pastizal(over-grazing) es $b \in \mathbb{R}$    
+    \pause
+    \item Sea $x \in \mathbb{N}$ el numero de ovejas agregadas mas alla del pastizal(over-grazing).
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Tragedia de los bienes comunes}
+  \framesubtitle{Formalizando(cont)}
+  \begin{itemize}
+    \setlength{\itemsep}{4pt}    
+    \item Bajo estas condiciones mencionadas en la diapositiva anterior, tenemos que:
+    \pause
+    \item El valor de cada oveja en \texttt{over-grazing} es $(1-bx)$
+    \pause 
+    \item El valor del rebaño total es de $(N + x) . (1-bx)$
+    \pause
+    \item Se dice que ocurre \texttt{over-grazing} cuando el hecho de agregar una nueva oveja decrementa el valor del rebaño total. Es decir $ N > (N + x) . (1-bx) \longleftrightarrow b > \frac{1}{N}$
+    \pause
+    \item Modelemos el problema como un juego de suma no nula.
+    \pause
+    \item Tenemos 2 jugadores: \textbf{Nuestro pastor}, \textbf{El resto de los pastores}.
+    \pause
+    \item Cada jugador tiene opciones, que se detallan a continuacion.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Tragedia de los bienes comunes}
+  \framesubtitle{Formalizando(cont)}
+  \begin{itemize}
+    \setlength{\itemsep}{8pt}    
+    \item Opciones de \textbf{Nuestro pastor}:
+    \begin{itemize}
+      \item Agregar una oveja 
+      \item No agregar una oveja 
+    \end{itemize}
+    \pause
+    \item Opciones de \textbf{El resto de los pastores}:
+    \begin{itemize}
+      \item Agregar una oveja cada uno
+      \item No agregar \textbf{ninguna} oveja 
+    \end{itemize}
+    \pause
+
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Tragedia de los bienes comunes}
+  \framesubtitle{Formalizando(cont)}
+    \begin{itemize}
+      \item Matriz de pagos de \textbf{Nuestro pastor}:
+    \end{itemize}
+    \begin{figure}[h!]
+      \centering        
+      \includegraphics[scale=0.30]{fig/pagos-generico-mipastor.png}
+      \caption{Matriz de pagos}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Tragedia de los bienes comunes}
+  \framesubtitle{Formalizando(cont)}
+    \begin{itemize}
+      \item Matriz de pagos de \textbf{El resto de los pastores}:
+    \end{itemize}
+    \begin{figure}[h!]
+      \centering        
+      \includegraphics[scale=0.30]{fig/pagos-generico-restopastores.png}      
+      \caption{Matriz de pagos}
+  \end{figure}
+\end{frame}
+
 \end{document}

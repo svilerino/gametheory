@@ -18,7 +18,7 @@ clean:
 	- rm -f *.toc
 	- rm -f *.aux
 	- rm -f *.out
-	- rm -f *.pdf
+	- rm -f slides.pdf
 	- rm -f *.dvi
 	- rm -f *.snm
 	- rm -f *.nav
